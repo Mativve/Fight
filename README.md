@@ -4,4 +4,4 @@ Gra polegająca na "wyklikaniu" przeciwnika. Dwóch graczy klika w wybrane przyc
 
 ## Built With
 
-* [Live Preview]()
+* [Live Preview](https://mativve.github.io/Fight/)
