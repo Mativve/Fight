@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fight!</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Stats section -->
+    <div id="stats">
+        <div class="left">
+            <h2>0</h2>
+        </div>
+        <div class="center">
+            <p>Round 1</p>
+        </div>
+        <div class="right">
+            <h2>0</h2>
+        </div>
+    </div>
+
+    <!-- Game section -->
+    <div id="game">
+        <h1 id="togame">Are you ready to rumble?</h1>
+        <p id="info"></p>
+
+        <div class="bar">
+            <div id="blue">S</div>
+            <div id="red">K</div>
+        </div>
+        <button id="reset" onclick="reset()">Restart</button>
+    </div>
+    
+    <!-- Footer section -->
+    <footer>
+        <div class="foot">
+            <p>I am not responsible for damaged keyboards.</p>
+            <p>Create by Mativve</p>
+        </div>
+        <div class="settings">
+            <button class="icon_btn" id="settingbtn"><img src="img/settings.png" alt=""></button>
+        </div>
+    </footer>
+    
+    <!-- Settings section -->
+    
+    <div id="setting_panel">
+        <div class="content">
+            <button class="icon_btn" id="exitbtn"><img src="img/exit.png" alt=""></button>
+            
+            <p>Sound</p>
+            
+            <p>Color</p>
+            
+            <p>Keyboard</p>
+        </div>
+    </div>
+
+    
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
