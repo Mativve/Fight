@@ -6,4 +6,4 @@ A game based on clicking faster than the opponent. Two players click on the sele
 
 ## Built With
 
-* [Live Preview](https://mativve.github.io/Fight/)
+* [Live Preview](https://mativve.github.io/Fighting-keys/)
