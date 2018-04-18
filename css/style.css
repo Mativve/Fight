@@ -1,222 +1,337 @@
-/*
-Simple reset styles
-*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/*
-Fonts
-*/
-
-@font-face {
-    font-family:carterone;
-    src:url("carter-one.regular.ttf");
-}
-
 body {
-    background-color: #151515;
-    font-family: carterone, sans-serif;
-    color: #FFF;
-    font-size: 16px;
+    font-family: 'Carter One', cursive;
+    font-size: 17px;
+    background-color: #1D2125;
+    color: #fff;
+    overflow: hidden;
 }
 
-/*
-Game div
-*/
-
-#game {
+.top {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 400px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    z-index: 1;
+}
+
+.top .left {
+    text-align: left;
+    width: 30%;
+    font-size: 3rem;
+}
+
+.top .center {
+    text-align: center;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1.5rem;
+}
+
+.top .right {
+    text-align: right;
+    width: 30%;
+    font-size: 3rem;
+}
+
+
+.info, .settings {
+    font-family: 'Carter One', cursive;    
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 4rem;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.settings .content{
+    font-size: 1.2rem;
+    background-color: rgba(0, 0, 0, 1);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    position: relative;
+}
+
+.settings .content .row{
+    display: flex;
+    flex-direction: row; 
+    margin-bottom: 10px;
+}
+
+.settings .content .row:first-child{
+    margin-bottom: 15px;
+    text-align: center;
+    display: block;
+}
+
+.info.show, .settings.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.settings button{
+    position: absolute;
+    top:0;
+    right: 0;
+    transform: translate(50%,-50%);
+}
+
+.settings select{
+    margin-left: 10px;
+    width: 50%;
     text-align: center;
 }
 
-#game p {
-    margin-bottom: 2em;
-}
 
 
-/*
-Bar player
-*/
-.bar {
-    background-color: #101010;
-    height: 55px;
-    border: 3px solid #111;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
-    transition: all 0.3s ease-in-out;
-    position: relative;
-    width: 300px;
-    margin: 0 auto;
-    box-shadow: 0 0 255px rgb(55, 55, 55);
-}
-
-.bar:after {
-    content: '';
+.battle {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.5);
-    width: 3px;
-    height: 150%;
+    transform: translate(-50%, -50%);
+    height: 70px;
+    width: 550px;
+    background-color: #111;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: stretch;
+    flex-direction: row;
+    border-radius: 35px;
+    border: 3px solid #000;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;    
 }
 
-#blue,
-#red {
+.battle:after {
+    content: '';
+    height: 140px;
+    width: 5px;
+    background-color: rgba(255, 255, 255, 0.75);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 1;
+}
+
+.battle .bar {
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-weight: bold;
+    transition: all 0.05s ease-in-out;
+    position: relative;
     overflow: hidden;
-    transition: all 0.3s ease-in-out;
 }
 
-.blueshadow {
-    box-shadow: 0 0 255px rgb(63, 96, 199);
+.battle.shakeRed{
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shakeRed 0.5s; 
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;    
 }
 
-#blue {
-    background-color: #3f60c7;
+.battle.shakeBlue{
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shakeBlue 0.5s; 
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;    
+}
+
+@keyframes shakeRed {
+    0% {  transform: translate(20%, -50%) scale(2) rotate(0deg) }
+    10% { transform: translate(19%, -49%) scale(2) rotate(-1deg); }
+    20% { transform: translate(20%, -51%) scale(2) rotate(1deg); }
+    30% { transform: translate(21%, -49%) scale(2) rotate(0deg); }
+    40% { transform: translate(20%, -51%) scale(2) rotate(1deg); }
+    50% { transform: translate(19%, -50%) scale(2) rotate(-1deg); }
+    60% { transform: translate(21%, -49%) scale(2) rotate(0deg); }
+    70% { transform: translate(20%, -51%) scale(2) rotate(-1deg); }
+    80% { transform: translate(21%, -50%) scale(2) rotate(1deg); }
+    90% { transform: translate(19%, -49%) scale(2) rotate(0deg); }
+    100% {transform: translate(21%, -51%) scale(2) rotate(-1deg); }
+}
+
+@keyframes shakeBlue {
+    0% {  transform: translate(-120%, -50%) scale(2) rotate(0deg) }
+    10% { transform: translate(-119%, -49%) scale(2) rotate(-1deg); }
+    20% { transform: translate(-120%, -51%) scale(2) rotate(1deg); }
+    30% { transform: translate(-121%, -49%) scale(2) rotate(0deg); }
+    40% { transform: translate(-120%, -51%) scale(2) rotate(1deg); }
+    50% { transform: translate(-119%, -50%) scale(2) rotate(-1deg); }
+    60% { transform: translate(-121%, -49%) scale(2) rotate(0deg); }
+    70% { transform: translate(-120%, -51%) scale(2) rotate(-1deg); }
+    80% { transform: translate(-121%, -50%) scale(2) rotate(1deg); }
+    90% { transform: translate(-119%, -49%) scale(2) rotate(0deg); }
+    100% {transform: translate(-121%, -51%) scale(2) rotate(-1deg); }
+}
+
+.battle .bar.red {
+    background-color: #f44336;
     width: 50%;
-    float: left;
 }
 
-.redshadow {
-    box-shadow: 0 0 255px rgb(199, 63, 63);
-}
-
-#red {
-    background-color: #c73f3f;
+.battle .bar.blue {
+    background-color: #03a9f4;
     width: 50%;
-    float: right;
-}
-
-#reset {
-    margin-top: 2em;
-    padding: 0.5em 1em;
-    background-color: rgba(0, 0, 0, 0.75);
-    border: none;
-    color: #FFF;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
 }
 
 
-/*
-
-Top stats section
-
-*/
-#stats {
-    text-align: center;
-    position: absolute;
-    top: 0;
-    height: 50px;
-    z-index: 5;
-    width: 100%;
-}
-
-#stats .left,
-#stats .right,
-#stats .center {
-    font-size: 1.5rem;
-    width: 30%;
-    padding: 0.5em;
-}
-
-#stats .left {
-    float: left;
-    text-align: left;
-}
-
-#stats .right {
-    float: left;
-    text-align: right;
-}
-
-#stats .center {
-    width: 40%;
-    text-align: center;
-    float: left;
-}
-
-
-/*
-Footer
-*/
-footer {
+.bottom {
     position: absolute;
     bottom: 0;
+    left: 0;
     width: 100%;
-    padding: 0.75em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    z-index: 1;
 }
 
-footer .foot, footer .settings{
-    float:left;
+.bottom .left {
+    text-align: left;
     width: 50%;
+    font-size: 1rem;
 }
 
-footer .settings{
+
+.bottom .right {
     text-align: right;
+    width: 50%;
+    font-size: 1rem;
 }
 
-/*
-Settings button
-*/
-.icon_btn{
-    width:50px;
-    height: 50px;
+
+
+
+/* The container */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+
+.btn{
     border:none;
     background-color: transparent;
+    padding: 10px;
+    font-size: 2rem;
+    color:#FFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    border-radius: 50%;
     overflow: hidden;
-}
-
-.icon_btn img{
-    width: 100%;
-    filter: invert(100%);
+    
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
 }
 
-.icon_btn:hover img{
-    transform: rotate(180deg) scale(0.8);
+.btn:hover,
+.btn:focus{
+    transform: scale(1.2);
 }
 
-/*
-Settings panel
-*/
+.btn.spin:hover,
+.btn.spin:focus{
+    transform: rotate(360deg) scale(1.2);
+}
 
-#setting_panel{
-    display: none;
+.settings .btn.spin:hover,
+.settings .btn.spin:focus{
     position: absolute;
     top:0;
-    left: 0;
-    width:100%;
-    height: 100%;
-    background-color:rgba(0,0,0,0.8);
+    right: 0;
+    transform: translate(50%,-50%) rotate(360deg) scale(1.2);
+}
+
+
+.top, .bottom{
     z-index: 10;
-}
-
-#setting_panel .content{
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translateY(-50%) translateX(-50%);
-    min-width: 300px;
-    min-height: 300px;
-}
-
-#setting_panel #exitbtn{
-    position: absolute;
-    float: right;
-    right:-25px;
-    top:-25px;
 }
